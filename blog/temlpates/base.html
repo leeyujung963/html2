@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Blog{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'blog/_assets/css/custom.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+
+{% include 'basecamp/navbar.html' %}
+
+
+<div class="container">
+
+            <!-- Categories Widget -->
+            <div class="card my-4" id="category-card">
+                <h5 class="card-header">Categories</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                {% for category in category_list %}
+                                    <li>
+                                        <a href="{{ category.get_absolute_url }}">{{ category.name }} ({{ category.post_set.count }})</a>
+                                    </li>
+                                {% endfor %}
+                                <li>
+                                    <a href="/blog/category/_none/">미분류 ({{ posts_without_category }})</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'blog/_assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'blog/_assets/js/popper.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'blog/_assets/js/custom.js' %}"></script>
+
+</body>
+</html>
